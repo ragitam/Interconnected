@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "622833378821",
+    "firebase_url": "https://interconnected-a42d8.firebaseio.com",
+    "project_id": "interconnected-a42d8",
+    "storage_bucket": "interconnected-a42d8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:622833378821:android:ab9e8d87dfa3f5ae",
+        "android_client_info": {
+          "package_name": "com.app.interconnected"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "622833378821-o7qtaolinkfg3iv71piouktddtkutgpe.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.app.interconnected",
+            "certificate_hash": "CF6D3358E89CEF4629BAE26DF77C1C30DA19C41A"
+          }
+        },
+        {
+          "client_id": "622833378821-q9tvfq6eatbt96uab7bqfu4l5pj1t34o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA_fkPYyUS7lcZPAhSwwvwdRV8lyfE2P40"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "622833378821-q9tvfq6eatbt96uab7bqfu4l5pj1t34o.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
