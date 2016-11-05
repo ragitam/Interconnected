@@ -113,13 +113,11 @@ public class RegisterActivity extends AppCompatActivity{
                             FirebaseUser user = mAuth.getCurrentUser();
 
                             databaseReference.child(user.getUid()).setValue(userInformation);
+                            mAuth.signOut();
+                            finish();
                             Toast.makeText(RegisterActivity.this, "Your account successfully registered", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
-    }
-
-    private void goToLogin(){
-
     }
 }
