@@ -39,7 +39,7 @@ public class LoginActivity extends AppCompatActivity {
 
         progressDialog = new ProgressDialog(this);
 
-        ema = (EditText) findViewById(R.id.editText);
+        ema = (EditText) findViewById(R.id.email);
         passwd = (EditText) findViewById(R.id.editText2);
         signIn = (Button) findViewById(R.id.button);
         btn_register = (TextView) findViewById(R.id.textView);
