@@ -18,7 +18,7 @@ public class MainDashboard extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main_dashboard);
+        setContentView(R.layout.cardview);
         dataSet = new ArrayList<>();
         initDataset();
 
