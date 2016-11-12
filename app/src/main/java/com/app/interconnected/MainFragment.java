@@ -1,28 +1,42 @@
 package com.app.interconnected;
 
+
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import java.util.ArrayList;
 
-public class MainDashboard extends AppCompatActivity {
+
+/**
+ * A simple {@link Fragment} subclass.
+ */
+public class MainFragment extends Fragment {
 
     private RecyclerView rvView;
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
     private ArrayList<String> dataSet;
 
+    public MainFragment() {
+        // Required empty public constructor
+    }
+
+
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.cardview);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
         dataSet = new ArrayList<>();
         initDataset();
 
-        rvView = (RecyclerView) findViewById(R.id.recyclerView_kegiatan);
+        View v = inflater.inflate(R.layout.fragment_main, container, false);
+
+        rvView = (RecyclerView) v.findViewById(R.id.recyclerView_kegiatan);
         rvView.setHasFixedSize(true);
 
         /**
@@ -30,12 +44,13 @@ public class MainDashboard extends AppCompatActivity {
          * yang hanya berisi daftar item
          * disusun dari atas ke bawah
          */
-        layoutManager = new LinearLayoutManager(this);
+        layoutManager = new LinearLayoutManager(getActivity());
         rvView.setLayoutManager(layoutManager);
 
         adapter = new RecyclerViewAdapter(dataSet);
         rvView.setAdapter(adapter);
 
+        return v;
     }
 
     private void initDataset(){

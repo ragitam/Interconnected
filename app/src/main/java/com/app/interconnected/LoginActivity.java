@@ -83,6 +83,8 @@ public class LoginActivity extends AppCompatActivity {
 
                                 if (!task.isSuccessful()) {
                                     // there was an error
+                                    progressDialog.cancel();
+                                    progressDialog.hide();
                                     Toast.makeText(LoginActivity.this, "Log In Failed, Please Try Again", Toast.LENGTH_SHORT).show();
                                 } else {
                                     finish();

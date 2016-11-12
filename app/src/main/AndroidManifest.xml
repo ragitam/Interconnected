@@ -22,7 +22,7 @@
         <meta-data
             android:name="android.support.PARENT_ACTIVITY"
             android:value="com.app.interconnected.LoginActivity" />
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".MainActivity" android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
