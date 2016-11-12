@@ -45,6 +45,7 @@
         android:textColor="@android:color/white"
         android:layout_below="@+id/button"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
         android:clickable="true" />
 
     <Button

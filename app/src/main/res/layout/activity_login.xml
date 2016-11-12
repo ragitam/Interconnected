@@ -44,6 +44,7 @@
         android:id="@+id/textView"
         android:textColor="@android:color/white"
         android:layout_below="@+id/button"
+        android:layout_marginTop="15dp"
         android:layout_centerHorizontal="true"
         android:clickable="true" />
 
