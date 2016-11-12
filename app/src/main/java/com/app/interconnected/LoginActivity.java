@@ -66,6 +66,7 @@ public class LoginActivity extends AppCompatActivity {
                     return;
                 }
                 if (password.length() < 6) {
+                    progressDialog.cancel();
                     Toast.makeText(LoginActivity.this, getString(R.string.minimum_password), Toast.LENGTH_SHORT).show();
                 }
 
@@ -84,7 +85,6 @@ public class LoginActivity extends AppCompatActivity {
                                 if (!task.isSuccessful()) {
                                     // there was an error
                                     progressDialog.cancel();
-                                    progressDialog.hide();
                                     Toast.makeText(LoginActivity.this, "Log In Failed, Please Try Again", Toast.LENGTH_SHORT).show();
                                 } else {
                                     finish();
