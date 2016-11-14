@@ -92,6 +92,7 @@ public class RegisterActivity extends AppCompatActivity{
             return;
         }
         if (password.length() < 6) {
+            progressDialog.cancel();
             Toast.makeText(getApplicationContext(), "Password too short, enter minimum 6 characters!", Toast.LENGTH_SHORT).show();
             return;
         }
@@ -106,6 +107,7 @@ public class RegisterActivity extends AppCompatActivity{
                         // the auth state listener will be notified and logic to handle the
                         // signed in user can be handled in the listener.
                         if (!task.isSuccessful()) {
+                            progressDialog.cancel();
                             Toast.makeText(RegisterActivity.this, "Authentication failed." + task.getException(), Toast.LENGTH_SHORT).show();
                         }else{
                             UserInformation userInformation = new UserInformation(fullname, username, email);
