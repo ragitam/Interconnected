@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/38-mobpro-s-a-b-e-b.iml" filepath="$PROJECT_DIR$/38-mobpro-s-a-b-e-b.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Interconnected.iml" filepath="$PROJECT_DIR$/Interconnected.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
