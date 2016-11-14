@@ -5,4 +5,5 @@
     <color name="colorAccent">#FF4081</color>
     <color name="background">#375497</color>
     <color name="white">#ffffff</color>
+    <color name="green_submit">#00c853</color>
 </resources>

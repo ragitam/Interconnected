@@ -5,9 +5,11 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -74,7 +76,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if(id == R.id.action_settings){
+        if(id == R.id.action_add){
+            LayoutInflater inflater=LayoutInflater.from(MainActivity.this);
+            View v=inflater.inflate(R.layout.add_kegiatan,null);
+            AlertDialog.Builder builder=new AlertDialog.Builder(MainActivity.this);
+            builder.setView(v);
+            AlertDialog alertDialog=builder.create();
+            alertDialog.show();
             return true;
         }
         return super.onOptionsItemSelected(item);
