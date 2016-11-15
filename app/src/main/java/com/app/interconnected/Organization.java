@@ -1,6 +1,5 @@
 package com.app.interconnected;
 
-import android.content.Intent;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -13,13 +12,10 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
-import com.google.firebase.auth.FirebaseAuth;
+import static com.app.interconnected.R.id.toolbar;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
-
-    private FirebaseAuth mAuth;
+public class Organization extends AppCompatActivity {
 
     NavigationView navigationView;
     Toolbar toolbar;
@@ -27,7 +23,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_organization);
 
         MainFragment fragment = new MainFragment();
         android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
@@ -37,24 +33,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        mAuth = FirebaseAuth.getInstance();
-        if(mAuth.getCurrentUser() == null){
-            startActivity(new Intent(this, LoginActivity.class));
-        }
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
-        toggle.syncState();
 
         navigationView = (NavigationView) findViewById(R.id.nav_view);
-
-        //How to change elements in the header programatically
-        View headerView = navigationView.getHeaderView(0);
-
-        navigationView.setNavigationItemSelectedListener(this);
     }
 
     @Override
@@ -75,36 +59,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if(id == R.id.action_add){
-            LayoutInflater inflater=LayoutInflater.from(MainActivity.this);
-            View v=inflater.inflate(R.layout.add_kegiatan,null);
-            AlertDialog.Builder builder=new AlertDialog.Builder(MainActivity.this);
+        int id=item.getItemId();
+        if(id==R.id.add_org){
+            LayoutInflater inflater=LayoutInflater.from(Organization.this);
+            View v=inflater.inflate(R.layout.add_organisasi,null);
+            AlertDialog.Builder builder=new AlertDialog.Builder(Organization.this);
             builder.setView(v);
             AlertDialog alertDialog=builder.create();
             alertDialog.show();
             return true;
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    @SuppressWarnings("StatementWithEmptyBody")
-    @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if(id == R.id.nav_dashboard){
-            Toast.makeText(this, "Dashboard", Toast.LENGTH_SHORT).show();
-        }else if(id == R.id.nav_org){
-            Intent org_intent=new Intent(MainActivity.this,Organization.class);
-            startActivity(org_intent);
-        }else if(id == R.id.nav_exit){
-            mAuth.signOut();
-            finish();
-            startActivity(new Intent(this, LoginActivity.class));
-        }
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
-        return true;
     }
 }

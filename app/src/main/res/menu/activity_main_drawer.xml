@@ -1,18 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:id="@+id/nav_org" android:icon="@drawable/ic_people"
+    <item
+        android:id="@+id/nav_dashboard"
+        android:icon="@drawable/ic_home_white_24dp"
+        android:title="Dashboard" />
+    <item
+        android:id="@+id/nav_org"
+        android:icon="@drawable/ic_group_white_24dp"
         android:title="Organization" />
-    <item android:id="@+id/nav_apps" android:icon="@drawable/ic_search"
-        android:title="aaaa" />
-    <item android:id="@+id/nav_hiburan" android:icon="@drawable/ic_search"
-        android:title="aaa" />
+    <item
+        android:id="@+id/nav_timeline"
+        android:icon="@drawable/ic_date_range_white"
+        android:title="Timeline" />
 
-    <item android:title="Account">
+    <item
+        android:title="Account">
         <menu>
-            <item android:id="@+id/nav_account" android:icon="@drawable/ic_person"
+            <item
+                android:id="@+id/nav_account"
+                android:icon="@drawable/ic_person"
                 android:title="Your Account" />
-            <item android:id="@+id/nav_exit" android:icon="@drawable/ic_exit_to_app"
+            <item
+                android:id="@+id/nav_exit"
+                android:icon="@drawable/ic_exit_to_app"
                 android:title="Log Out" />
         </menu>
     </item>
