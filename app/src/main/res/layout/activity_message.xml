@@ -43,9 +43,6 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_weight="5"
-            android:text="Send Message"
-            android:background="@color/colorAccent"
-            android:textColor="#ffffff"
-            />
+            android:text="Send Message" />
     </LinearLayout>
 </LinearLayout>
