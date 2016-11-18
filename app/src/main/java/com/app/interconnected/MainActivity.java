@@ -93,7 +93,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public boolean onNavigationItemSelected(MenuItem item) {
         int id = item.getItemId();
         if(id == R.id.nav_dashboard){
-            Toast.makeText(this, "Dashboard", Toast.LENGTH_SHORT).show();
+            MainFragment fragment = new MainFragment();
+            android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.fragment_container, fragment);
+            fragmentTransaction.commit();
         }else if(id == R.id.nav_org){
             Intent org_intent=new Intent(MainActivity.this,Organization.class);
             startActivity(org_intent);
