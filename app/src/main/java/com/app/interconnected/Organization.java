@@ -75,9 +75,9 @@ public class Organization extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if(id == R.id.action_add){
+        if(id == R.id.add_org){
             LayoutInflater inflater=LayoutInflater.from(Organization.this);
-            View v=inflater.inflate(R.layout.add_kegiatan,null);
+            View v=inflater.inflate(R.layout.add_organisasi,null);
             AlertDialog.Builder builder=new AlertDialog.Builder(Organization.this);
             builder.setView(v);
             AlertDialog alertDialog=builder.create();
