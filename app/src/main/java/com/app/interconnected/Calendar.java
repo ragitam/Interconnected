@@ -32,7 +32,7 @@ public class Calendar extends Fragment {
         super.onCreate(savedInstanceState);
 
         calendarView = (CalendarView) lihat.findViewById(R.id.calendarView);
-        dateDisplay = (TextView) lihat.findViewById(R.id.dateDisplay);
+        /*dateDisplay = (TextView) lihat.findViewById(R.id.dateDisplay);
         dateDisplay.setText("Date: ");
 
         calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
@@ -43,7 +43,7 @@ public class Calendar extends Fragment {
                 Toast.makeText(getContext(), "Selected Date:\n" + "Day = " + i2 + "\n" + "Month = " + i1 + "\n" + "Year = " + i, Toast.LENGTH_SHORT).show();
             }
         });
-
+        */
         return lihat;
     }
 
