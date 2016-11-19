@@ -13,6 +13,10 @@
         android:id="@+id/nav_timeline"
         android:icon="@drawable/ic_date_range_white"
         android:title="Timeline" />
+    <item
+        android:id="@+id/nav_message"
+        android:icon="@drawable/ic_chat"
+        android:title="Message" />
 
     <item
         android:title="Account">

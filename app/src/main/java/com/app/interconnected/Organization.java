@@ -68,7 +68,7 @@ public class Organization extends AppCompatActivity implements NavigationView.On
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main, menu);
+        getMenuInflater().inflate(R.menu.org_actionbar, menu);
         return true;
     }
 
@@ -99,6 +99,13 @@ public class Organization extends AppCompatActivity implements NavigationView.On
             android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.fragment_container, fragment);
             fragmentTransaction.commit();
+        }else if(id == R.id.nav_timeline){
+            Calendar fragment = new Calendar();
+            android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.fragment_container, fragment);
+            fragmentTransaction.commit();
+        }else if(id == R.id.nav_message){
+
         }else if(id == R.id.nav_exit){
             mAuth.signOut();
             finish();

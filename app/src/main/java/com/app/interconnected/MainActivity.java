@@ -100,6 +100,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }else if(id == R.id.nav_org){
             Intent org_intent=new Intent(MainActivity.this,Organization.class);
             startActivity(org_intent);
+        }else if(id == R.id.nav_timeline){
+            Calendar cal = new Calendar();
+            android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.fragment_container, cal);
+            fragmentTransaction.commit();
+        }else if(id == R.id.nav_message){
+
         }else if(id == R.id.nav_exit){
             mAuth.signOut();
             finish();

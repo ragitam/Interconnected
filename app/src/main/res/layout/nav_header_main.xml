@@ -10,7 +10,7 @@
         android:id="@+id/prof_pic"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:src="@drawable/sampah"
+        android:src="@color/colorPrimaryDark"
         app:border_color="#FF000000"
         android:layout_marginLeft="24dp"
         android:clickable="true"
