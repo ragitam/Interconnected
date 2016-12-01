@@ -1,5 +1,6 @@
 package com.app.interconnected;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -13,12 +14,20 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.Toast;
+
+import com.app.interconnected.Adapter.OrganisasiAdapter;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 
 public class Organization extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private FirebaseAuth mAuth;
+    private DatabaseReference databaseReference;
 
     NavigationView navigationView;
     Toolbar toolbar;
@@ -40,6 +49,7 @@ public class Organization extends AppCompatActivity implements NavigationView.On
         if(mAuth.getCurrentUser() == null){
             startActivity(new Intent(this, LoginActivity.class));
         }
+        databaseReference = FirebaseDatabase.getInstance().getReference();
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
 
@@ -76,12 +86,40 @@ public class Organization extends AppCompatActivity implements NavigationView.On
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if(id == R.id.add_org){
-            LayoutInflater inflater=LayoutInflater.from(Organization.this);
-            View v=inflater.inflate(R.layout.add_organisasi,null);
-            AlertDialog.Builder builder=new AlertDialog.Builder(Organization.this);
-            builder.setView(v);
-            AlertDialog alertDialog=builder.create();
-            alertDialog.show();
+            LayoutInflater inflater = LayoutInflater.from(Organization.this);
+            View v = inflater.inflate(R.layout.add_organisasi,null);
+            AlertDialog.Builder dialog = new AlertDialog.Builder(Organization.this);
+            dialog.setView(v);
+
+            final EditText idOrg = (EditText) v.findViewById(R.id.id_org);
+            final EditText namaOrg = (EditText) v.findViewById(R.id.nama_org);
+
+            dialog.setPositiveButton("Add Organization", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    String nama_org = namaOrg.getText().toString().trim();
+                    String id_org = idOrg.getText().toString().trim();
+                    OrganisasiAdapter organisasi = new OrganisasiAdapter(id_org, nama_org);
+
+                    FirebaseUser user = mAuth.getCurrentUser();
+
+                    databaseReference.child("organisasi").child(id_org).setValue(nama_org);
+                    databaseReference.child(user.getUid()).child("organisasi").setValue(nama_org);
+
+                    Toast.makeText(Organization.this, "Your organization has been created", Toast.LENGTH_SHORT).show();
+
+                    dialog.dismiss();
+                }
+            });
+
+            dialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                }
+            });
+
+            dialog.show();
             return true;
         }
         return super.onOptionsItemSelected(item);

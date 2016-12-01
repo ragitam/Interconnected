@@ -109,7 +109,8 @@ public class RegisterActivity extends AppCompatActivity{
                         // signed in user can be handled in the listener.
                         if (!task.isSuccessful()) {
                             progressDialog.cancel();
-                            Toast.makeText(RegisterActivity.this, "Authentication failed." + task.getException(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(RegisterActivity.this, "Authentication failed." + task.getException(),
+                                    Toast.LENGTH_SHORT).show();
                         }else{
                             UserInformation userInformation = new UserInformation(fullname, username, email);
 
@@ -118,7 +119,8 @@ public class RegisterActivity extends AppCompatActivity{
                             databaseReference.child(user.getUid()).setValue(userInformation);
                             mAuth.signOut();
                             finish();
-                            Toast.makeText(RegisterActivity.this, "Your account successfully registered", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(RegisterActivity.this, "Your account successfully registered",
+                                    Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
