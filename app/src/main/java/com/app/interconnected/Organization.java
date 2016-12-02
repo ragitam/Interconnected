@@ -103,7 +103,7 @@ public class Organization extends AppCompatActivity implements NavigationView.On
 
                     FirebaseUser user = mAuth.getCurrentUser();
 
-                    databaseReference.child("organisasi").child(id_org).setValue(nama_org);
+                    databaseReference.child("Organisasi").child(id_org).child("Nama Organisasi").setValue(nama_org);
                     databaseReference.child(user.getUid()).child("organisasi").setValue(nama_org);
 
                     Toast.makeText(Organization.this, "Your organization has been created", Toast.LENGTH_SHORT).show();
