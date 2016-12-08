@@ -10,7 +10,8 @@
         android:layout_height="80dp"
         android:layout_margin="4dp"
         card_view:cardBackgroundColor="@color/background_material_light"
-        card_view:cardElevation="2.5dp">
+        card_view:cardElevation="2.5dp"
+        android:clickable="true">
 
         <LinearLayout
             android:orientation="vertical"

@@ -1,6 +1,7 @@
 package com.app.interconnected;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -50,6 +51,12 @@ public class MainFragment extends Fragment {
         adapter = new RecyclerViewAdapter(dataSet);
         rvView.setAdapter(adapter);
 
+        rvView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), DetailKegiatan.class));
+            }
+        });
         return v;
     }
 

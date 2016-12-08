@@ -29,18 +29,15 @@
 
         <activity
             android:name=".MainActivity"
-            android:label="Dashboard"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:label="Dashboard"/>
         <activity
             android:name=".LoginActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Organization"
-            android:label="Organization"
-            android:theme="@style/AppTheme.NoActionBar" />
-
-        <activity android:name=".AddOrganization" android:label="Add Organization" />
-        <activity android:name=".PesanActivity"></activity>
+            android:theme="@style/AppTheme.NoActionBar"
+            android:label="Organization"/>
     </application>
 
 </manifest>
