@@ -54,7 +54,6 @@ public class OrganizationFragment extends Fragment {
 
     public void ambidata(){
         listGambar= new ArrayList<String>();
-
         listGambar.add("Himadif");
         listGambar.add("Om Ganteng");
         listGambar.add("Tim Ocon");
