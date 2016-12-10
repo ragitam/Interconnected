@@ -2,6 +2,7 @@ package com.app.interconnected;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
@@ -60,5 +61,13 @@ public class OrganizationFragment extends Fragment {
         listGambar.add("Tim Ocon");
         listGambar.add("Panitia 17 Agustus");
     }
-    
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        super.onOptionsItemSelected(item);
+        if(item.getItemId()==1) {
+            startActivity(new Intent(getActivity(), AnggotaOrg.class));
+        }
+        return true;
+    }
 }
