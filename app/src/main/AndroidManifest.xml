@@ -19,11 +19,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity
-            android:name=".LoginActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
-
         <activity
             android:name=".RegisterActivity"
             android:label="Register" />
@@ -36,17 +31,13 @@
             android:name=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar"
             android:label="Dashboard"/>
-
+        <activity
+            android:name=".LoginActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Organization"
             android:theme="@style/AppTheme.NoActionBar"
             android:label="Organization"/>
-
-        <activity android:name=".PesanActivity" android:theme="@style/AppTheme.NoActionBar"
-            android:label="Message" />
-
-        <activity android:name=".MessageActivity"
-            android:label="Send New Message"/>
     </application>
 
 </manifest>
