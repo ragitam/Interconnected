@@ -1,4 +1,4 @@
-package com.app.interconnected;
+package com.app.interconnected.Adapter;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;

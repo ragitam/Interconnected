@@ -106,7 +106,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             fragmentTransaction.replace(R.id.fragment_container, cal);
             fragmentTransaction.commit();
         }else if(id == R.id.nav_message){
-
+            Intent org_intent=new Intent(MainActivity.this,PesanActivity.class);
+            startActivity(org_intent);
         }else if(id == R.id.nav_exit){
             mAuth.signOut();
             finish();

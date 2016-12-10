@@ -10,6 +10,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -99,12 +100,22 @@ public class Organization extends AppCompatActivity implements NavigationView.On
                 public void onClick(DialogInterface dialog, int which) {
                     String nama_org = namaOrg.getText().toString().trim();
                     String id_org = idOrg.getText().toString().trim();
+
+
+                    if (TextUtils.isEmpty(id_org)) {
+                        idOrg.setError("Enter Organization's ID!");
+                        return;
+                    }
+                    if (TextUtils.isEmpty(nama_org)) {
+                        namaOrg.setError("Enter Organization's Name!");
+                        return;
+                    }
                     OrganisasiAdapter organisasi = new OrganisasiAdapter(id_org, nama_org);
 
                     FirebaseUser user = mAuth.getCurrentUser();
 
                     databaseReference.child("Organisasi").child(id_org).child("Nama Organisasi").setValue(nama_org);
-                    databaseReference.child(user.getUid()).child("organisasi").setValue(nama_org);
+                    databaseReference.child("Data User").child(user.getUid()).child("organisasi").setValue(nama_org);
 
                     Toast.makeText(Organization.this, "Your organization has been created", Toast.LENGTH_SHORT).show();
 
@@ -143,7 +154,8 @@ public class Organization extends AppCompatActivity implements NavigationView.On
             fragmentTransaction.replace(R.id.fragment_container, fragment);
             fragmentTransaction.commit();
         }else if(id == R.id.nav_message){
-
+            Intent org_intent=new Intent(Organization.this,PesanActivity.class);
+            startActivity(org_intent);
         }else if(id == R.id.nav_exit){
             mAuth.signOut();
             finish();

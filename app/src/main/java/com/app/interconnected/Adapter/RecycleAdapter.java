@@ -1,4 +1,4 @@
-package com.app.interconnected;
+package com.app.interconnected.Adapter;
 
 
 import android.app.Activity;
@@ -12,6 +12,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.app.interconnected.R;
 
 import java.io.IOException;
 import java.io.InputStream;

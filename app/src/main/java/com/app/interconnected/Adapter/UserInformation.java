@@ -1,4 +1,4 @@
-package com.app.interconnected;
+package com.app.interconnected.Adapter;
 
 
 public class UserInformation {
