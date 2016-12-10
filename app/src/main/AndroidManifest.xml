@@ -38,6 +38,9 @@
             android:name=".Organization"
             android:theme="@style/AppTheme.NoActionBar"
             android:label="Organization"/>
+        <activity android:name=".PesanActivity" android:theme="@style/AppTheme.NoActionBar"
+            android:label="Message"/>
+        <activity android:name=".MessageActivity" android:label="Send New Message"/>
     </application>
 
 </manifest>

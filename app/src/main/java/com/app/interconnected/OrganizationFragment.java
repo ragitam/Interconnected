@@ -17,6 +17,8 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.app.interconnected.Adapter.RecycleAdapter;
+
 import java.util.ArrayList;
 
 

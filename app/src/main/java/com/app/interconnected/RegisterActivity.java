@@ -112,6 +112,7 @@ public class RegisterActivity extends AppCompatActivity{
 
                             FirebaseUser user = mAuth.getCurrentUser();
 
+
                             databaseReference.child("Data User").child(user.getUid()).setValue(userInformation);
                             mAuth.signOut();
                             finish();
