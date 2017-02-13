@@ -10,9 +10,6 @@ import com.app.interconnected.R;
 
 import java.util.ArrayList;
 
-/**
- * Created by Herdi_WORK on 15.09.16.
- */
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
 
     private ArrayList<String> rvData;

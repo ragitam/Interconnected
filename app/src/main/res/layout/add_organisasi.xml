@@ -18,14 +18,6 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/id_org"
-        android:hint="ID Organisasi"
-        android:padding="20dp"
-        android:background="@color/white"
-        android:inputType="textPersonName" />
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:id="@+id/nama_org"
         android:hint="@string/nama_organisasi"
         android:padding="20dp"

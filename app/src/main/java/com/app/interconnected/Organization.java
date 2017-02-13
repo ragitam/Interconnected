@@ -92,29 +92,20 @@ public class Organization extends AppCompatActivity implements NavigationView.On
             AlertDialog.Builder dialog = new AlertDialog.Builder(Organization.this);
             dialog.setView(v);
 
-            final EditText idOrg = (EditText) v.findViewById(R.id.id_org);
             final EditText namaOrg = (EditText) v.findViewById(R.id.nama_org);
 
             dialog.setPositiveButton("Add Organization", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     String nama_org = namaOrg.getText().toString().trim();
-                    String id_org = idOrg.getText().toString().trim();
 
-
-                    if (TextUtils.isEmpty(id_org)) {
-                        idOrg.setError("Enter Organization's ID!");
-                        return;
-                    }
                     if (TextUtils.isEmpty(nama_org)) {
                         namaOrg.setError("Enter Organization's Name!");
                         return;
                     }
-                    OrganisasiAdapter organisasi = new OrganisasiAdapter(id_org, nama_org);
-
                     FirebaseUser user = mAuth.getCurrentUser();
 
-                    databaseReference.child("Organisasi").child(id_org).child("Nama Organisasi").setValue(nama_org);
+                    databaseReference.child("Organisasi").child("Nama Organisasi").child(nama_org).setValue(nama_org);
                     databaseReference.child("Data User").child(user.getUid()).child("organisasi").setValue(nama_org);
 
                     Toast.makeText(Organization.this, "Your organization has been created", Toast.LENGTH_SHORT).show();
@@ -141,7 +132,7 @@ public class Organization extends AppCompatActivity implements NavigationView.On
     public boolean onNavigationItemSelected(MenuItem item) {
         int id = item.getItemId();
         if(id == R.id.nav_dashboard){
-            startActivity(new Intent(this,PesanActivity.class));
+            startActivity(new Intent(this,MainActivity.class));
         }else if(id == R.id.nav_org){
             OrganizationFragment fragment = new OrganizationFragment();
             android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
@@ -152,8 +143,6 @@ public class Organization extends AppCompatActivity implements NavigationView.On
             android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.fragment_container, fragment);
             fragmentTransaction.commit();
-        }else if(id == R.id.nav_message){
-            startActivity(new Intent(this,PesanActivity.class));
         }else if(id == R.id.nav_exit){
             mAuth.signOut();
             finish();

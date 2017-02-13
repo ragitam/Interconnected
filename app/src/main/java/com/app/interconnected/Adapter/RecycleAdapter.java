@@ -21,7 +21,7 @@ import java.util.ArrayList;
 
 public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.ViewHolder> {
 
-    private ArrayList<String> listGambar;
+    private ArrayList<OrganisasiAdapter> listGambar;
     private Activity activity;
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -38,8 +38,8 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.ViewHold
         }
     }
 
-    public RecycleAdapter(Activity activity,ArrayList<String> listGambar) {
-        this.listGambar = listGambar;
+    public RecycleAdapter(Activity activity,ArrayList<OrganisasiAdapter> list) {
+        this.listGambar = list;
         this.activity = activity;
     }
 
@@ -60,8 +60,7 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.ViewHold
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
 
-        holder.mTextView.setText(listGambar.get(position));
-        // menampilkan gambar dari folder assets
+        holder.mTextView.setText(listGambar.get(position).getOrgName());
         AssetManager assetManager = activity.getAssets();
         InputStream is;
         try {

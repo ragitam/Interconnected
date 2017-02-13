@@ -1,5 +1,6 @@
 package com.app.interconnected;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -9,17 +10,23 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.Toast;
 
+import com.app.interconnected.Adapter.Kegiatan;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private FirebaseAuth mAuth;
+    private DatabaseReference ref;
 
     NavigationView navigationView;
     Toolbar toolbar;
@@ -43,6 +50,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+
+        ref = FirebaseDatabase.getInstance().getReference();
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -79,10 +88,51 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if(id == R.id.action_add){
             LayoutInflater inflater=LayoutInflater.from(MainActivity.this);
             View v=inflater.inflate(R.layout.add_kegiatan,null);
-            AlertDialog.Builder builder=new AlertDialog.Builder(MainActivity.this);
+            final AlertDialog.Builder builder=new AlertDialog.Builder(MainActivity.this);
             builder.setView(v);
-            AlertDialog alertDialog=builder.create();
-            alertDialog.show();
+
+            final EditText namaKegiatan = (EditText)v.findViewById(R.id.nama_kegiatan);
+            final EditText namaOrganisasi = (EditText)v.findViewById(R.id.nama_organisasi);
+            final EditText penanggungJawab = (EditText)v.findViewById(R.id.pj_kegiatan);
+
+            builder.setPositiveButton("Add Kegiatan", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    String kegiatan = namaKegiatan.getText().toString().trim();
+                    String namaOrg = namaOrganisasi.getText().toString().trim();
+                    String pj = penanggungJawab.getText().toString().trim();
+
+                    if(TextUtils.isEmpty(kegiatan)){
+                        namaKegiatan.setError("Enter Activity's Name!");
+                        return;
+                    }
+                    if(TextUtils.isEmpty(namaOrg)){
+                        namaOrganisasi.setError("Enter Organization's Name!");
+                        return;
+                    }
+                    if(TextUtils.isEmpty(pj)){
+                        penanggungJawab.setError("Enter PIC's Name!");
+                        return;
+                    }
+
+                    Kegiatan keg = new Kegiatan(kegiatan,pj);
+
+                    ref.child("Organisasi").child("Nama Organisasi").child(namaOrg).child(kegiatan).setValue(pj);
+
+                    Toast.makeText(MainActivity.this, "Your activity has been created", Toast.LENGTH_SHORT).show();
+
+                    dialogInterface.dismiss();
+                }
+            });
+
+            builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                }
+            });
+
+            builder.show();
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -104,8 +154,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.fragment_container, cal);
             fragmentTransaction.commit();
-        }else if(id == R.id.nav_message){
-            startActivity(new Intent(this,PesanActivity.class));
         }else if(id == R.id.nav_exit){
             mAuth.signOut();
             finish();

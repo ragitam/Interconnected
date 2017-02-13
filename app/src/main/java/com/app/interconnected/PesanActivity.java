@@ -81,11 +81,6 @@ public class PesanActivity extends AppCompatActivity implements NavigationView.O
             android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.fragment_container, cal);
             fragmentTransaction.commit();
-        }else if(id == R.id.nav_message){
-            PesanFragment fragment = new PesanFragment();
-            android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.fragment_container, fragment);
-            fragmentTransaction.commit();
         }else if(id == R.id.nav_exit){
             mAuth.signOut();
             finish();

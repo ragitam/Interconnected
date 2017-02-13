@@ -31,7 +31,6 @@ public class AddOrganization extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         databaseReference = FirebaseDatabase.getInstance().getReference();
 
-        idOrg = (EditText) findViewById(R.id.id_org);
         namaOrg = (EditText) findViewById(R.id.nama_org);
     }
 
