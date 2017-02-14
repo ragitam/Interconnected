@@ -114,10 +114,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         penanggungJawab.setError("Enter PIC's Name!");
                         return;
                     }
+                    Kegiatan keg = new Kegiatan(kegiatan,pj,namaOrg);
 
-                    Kegiatan keg = new Kegiatan(kegiatan,pj);
+                    //ref.child("Organisasi").child("Nama Organisasi").child(namaOrg).child(kegiatan).setValue(pj);
+                    ref.child("Organisasi").child("Nama Organisasi").child(namaOrg).child(kegiatan).setValue(keg);
 
-                    ref.child("Organisasi").child("Nama Organisasi").child(namaOrg).child(kegiatan).setValue(pj);
 
                     Toast.makeText(MainActivity.this, "Your activity has been created", Toast.LENGTH_SHORT).show();
 

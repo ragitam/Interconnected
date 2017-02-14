@@ -12,41 +12,39 @@ import java.util.ArrayList;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
 
-    private ArrayList<String> rvData;
+    private ArrayList<Kegiatan> rvData;
 
-    public RecyclerViewAdapter(ArrayList<String> inputData) {
+    public RecyclerViewAdapter(ArrayList<Kegiatan> inputData) {
         rvData = inputData;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        // di tutorial ini kita hanya menggunakan data String untuk tiap item
-        public TextView tvTitle;
-        public TextView tvSubtitle;
+        public TextView namaKegiatan;
+        public TextView namaOrganisasi;
+        public TextView presentase;
 
         public ViewHolder(View v) {
             super(v);
-            tvTitle = (TextView) v.findViewById(R.id.nama_kegiatan);
-            tvSubtitle = (TextView) v.findViewById(R.id.angka_persentase);
+            namaKegiatan = (TextView) v.findViewById(R.id.nama_kegiatan);
+            namaOrganisasi = (TextView) v.findViewById(R.id.nama_organisa);
+            presentase = (TextView) v.findViewById(R.id.angka_persentase);
         }
     }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        // membuat view baru
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.view_rv_item, parent, false);
-        // mengeset ukuran view, margin, padding, dan parameter layout lainnya
         ViewHolder vh = new ViewHolder(v);
         return vh;
     }
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        // - mengambil elemen dari dataset (ArrayList) pada posisi tertentu
-        // - mengeset isi view dengan elemen dari dataset tersebut
-        final String name = rvData.get(position);
-        holder.tvTitle.setText(rvData.get(position));
-        holder.tvSubtitle.setText("Frau " + position);
+        final Kegiatan name = rvData.get(position);
+        holder.namaKegiatan.setText(rvData.get(position).getNamaKegiatan());
+        holder.namaOrganisasi.setText(rvData.get(position).getNamaOrg());
+        holder.presentase.setText("Frau " + position);
     }
 
     @Override
