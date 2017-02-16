@@ -34,6 +34,7 @@ public class MainFragment extends Fragment {
     private RecyclerView.Adapter adapter;
     private RecyclerView.LayoutManager layoutManager;
     private ArrayList<Kegiatan> dataSet;
+    private Kegiatan keg = new Kegiatan();
     private DatabaseReference ref;
     private FirebaseAuth mAuth;
 
@@ -50,7 +51,8 @@ public class MainFragment extends Fragment {
 
         FirebaseUser user = mAuth.getInstance().getCurrentUser();
 
-        ref = FirebaseDatabase.getInstance().getReference().child("Organisasi").child("Nama Organisasi");
+        ref = FirebaseDatabase.getInstance().getReference().child("Organisasi");
+        ref.keepSynced(true);
 
         initDataset();
 
@@ -79,7 +81,7 @@ public class MainFragment extends Fragment {
         ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
-
+                dataSet.clear();
                 for(DataSnapshot postSnapshot : snapshot.getChildren()){
                     Kegiatan keg = postSnapshot.getValue(Kegiatan.class);
 
@@ -92,17 +94,5 @@ public class MainFragment extends Fragment {
                 Toast.makeText(getActivity(), "No Data Found" +databaseError.toException(), Toast.LENGTH_SHORT).show();
             }
         });
-
-        /* dataSet.add("Karin");
-        dataSet.add("Ingrid");
-        dataSet.add("Helga");
-        dataSet.add("Renate");
-        dataSet.add("Elke");
-        dataSet.add("Ursula");
-        dataSet.add("Erika");
-        dataSet.add("Christa");
-        dataSet.add("Gisela");
-        dataSet.add("Monika"); */
-
     }
 }

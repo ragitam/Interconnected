@@ -51,6 +51,7 @@ public class Organization extends AppCompatActivity implements NavigationView.On
             startActivity(new Intent(this, LoginActivity.class));
         }
         databaseReference = FirebaseDatabase.getInstance().getReference();
+        databaseReference.keepSynced(true);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
 
@@ -105,7 +106,7 @@ public class Organization extends AppCompatActivity implements NavigationView.On
                     }
                     FirebaseUser user = mAuth.getCurrentUser();
 
-                    databaseReference.child("Organisasi").child("Nama Organisasi").child(nama_org).setValue(nama_org);
+                    //databaseReference.child("Organisasi").child("Nama Organisasi").child(nama_org).setValue(nama_org);
                     databaseReference.child("Data User").child(user.getUid()).child("organisasi").setValue(nama_org);
 
                     Toast.makeText(Organization.this, "Your organization has been created", Toast.LENGTH_SHORT).show();

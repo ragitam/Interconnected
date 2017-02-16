@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,7 @@ import com.app.interconnected.Adapter.OrganisasiAdapter;
 import com.app.interconnected.Adapter.RecycleAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -49,7 +51,8 @@ public class OrganizationFragment extends Fragment {
 
         FirebaseUser user = mAuth.getInstance().getCurrentUser();
 
-        ref = FirebaseDatabase.getInstance().getReference().child("Data User").child(user.getUid()) ;
+        ref = FirebaseDatabase.getInstance().getReference().child("Data User");
+        ref.keepSynced(true);
 
         v = inflater.inflate(R.layout.fragment_organization, container, false);
 
@@ -65,14 +68,14 @@ public class OrganizationFragment extends Fragment {
         GridLayoutManager llm=new GridLayoutManager(getActivity(),2);
         rView.setLayoutManager(llm);
 
-        /*ref.addValueEventListener(new ValueEventListener() {
+        ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
-
+                listGambar.clear();
                 for(DataSnapshot postSnapshot : snapshot.getChildren()){
                     OrganisasiAdapter org = postSnapshot.getValue(OrganisasiAdapter.class);
-
                     listGambar.add(org);
+                    Log.e("Organisasi",org.getOrganisasi());
                 }
             }
 
@@ -80,9 +83,9 @@ public class OrganizationFragment extends Fragment {
             public void onCancelled(DatabaseError databaseError) {
                 Toast.makeText(getActivity(), "No Data Found" +databaseError.toException(), Toast.LENGTH_SHORT).show();
             }
-        }); */
+        });
 
-        rAdapter = new RecycleAdapter(getActivity(),listGambar);
+        rAdapter = new RecycleAdapter(listGambar);
         rView.setAdapter(rAdapter);
         return v;
     }

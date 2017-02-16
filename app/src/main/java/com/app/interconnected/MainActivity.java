@@ -2,6 +2,7 @@ package com.app.interconnected;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.nfc.Tag;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -11,22 +12,31 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.app.interconnected.Adapter.Kegiatan;
+import com.app.interconnected.Adapter.OrganisasiAdapter;
+import com.app.interconnected.Adapter.UserInformation;
+import com.google.firebase.auth.EmailAuthCredential;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private FirebaseAuth mAuth;
-    private DatabaseReference ref;
+    private DatabaseReference ref, reff;
 
     NavigationView navigationView;
     Toolbar toolbar;
@@ -52,6 +62,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
 
         ref = FirebaseDatabase.getInstance().getReference();
+        ref.keepSynced(true);
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -114,10 +125,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         penanggungJawab.setError("Enter PIC's Name!");
                         return;
                     }
-                    Kegiatan keg = new Kegiatan(kegiatan,pj,namaOrg);
+                    final Kegiatan keg = new Kegiatan(kegiatan,pj,namaOrg);
 
                     //ref.child("Organisasi").child("Nama Organisasi").child(namaOrg).child(kegiatan).setValue(pj);
-                    ref.child("Organisasi").child("Nama Organisasi").child(namaOrg).child(kegiatan).setValue(keg);
+                    //ref.child("Organisasi").child("Nama Organisasi").child(namaOrg).child(kegiatan).setValue(keg);
+                    ref.child("Organisasi").child(keg.getNamaKegiatan()).setValue(keg);
 
 
                     Toast.makeText(MainActivity.this, "Your activity has been created", Toast.LENGTH_SHORT).show();
